@@ -3,11 +3,13 @@
 
 #include <SDL.h>
 
+#include "RenderWindow.h"
+
 class Texture {
 public:
-    Texture(const char* image_path, SDL_Renderer* contextRenderer);
+    Texture(const char* image_path, RenderWindow& contextRenderer);
     ~Texture();
-    void draw_to(SDL_Renderer* targetRenderer);
+    void draw_to(RenderWindow& targetRenderer) { SDL_RenderCopy( targetRenderer.get_sdl_renderer(), sdl_texture, NULL, NULL ); }
 private:
     SDL_Texture* sdl_texture = nullptr;
 };

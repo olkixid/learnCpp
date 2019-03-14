@@ -2,14 +2,15 @@
 #include <SDL.h>
 #include <SDL_image.h>
 
+#include "RenderWindow.h"
 #include "Texture.h"
 
 const int SCREEN_WIDTH = 640;
 const int SCREEN_HEIGHT = 480;
 
-void loop(SDL_Renderer* renderer) {
-
-    Texture tex{"../image.png", renderer};
+void loop() {
+    RenderWindow rwin{"RenderWindow", SCREEN_WIDTH, SCREEN_HEIGHT};
+    Texture tex{"../image.png", rwin};
 
     //Main loop flag
     bool quit = false;
@@ -28,13 +29,13 @@ void loop(SDL_Renderer* renderer) {
         }
 
         //Clear screen
-        SDL_RenderClear( renderer );
+        rwin.clear();
 
         //Render texture to screen
-        tex.draw_to(renderer);
+        tex.draw_to(rwin);
 
         //Update screen
-        SDL_RenderPresent( renderer );
+        rwin.present();
     }
 }
 
@@ -42,17 +43,7 @@ int main() {
     SDL_Init( SDL_INIT_VIDEO );
     IMG_Init( IMG_INIT_PNG );
 
-    SDL_Window* gWindow = SDL_CreateWindow( "SDL Tutorial", SDL_WINDOWPOS_UNDEFINED, SDL_WINDOWPOS_UNDEFINED, SCREEN_WIDTH, SCREEN_HEIGHT, SDL_WINDOW_SHOWN );
-
-    SDL_Renderer* gRenderer = SDL_CreateRenderer( gWindow, -1, SDL_RENDERER_ACCELERATED );
-
-    loop(gRenderer);
-
-    //Destroy window
-    SDL_DestroyRenderer( gRenderer );
-    SDL_DestroyWindow( gWindow );
-    gRenderer = nullptr;
-    gWindow = nullptr;
+    loop();
 
     //Quit SDL subsystems
     IMG_Quit();
