@@ -3,16 +3,16 @@
 #include <iostream>
 #include <SDL_image.h>
 
-Texture::Texture(const char* image_path, RenderWindow& contextRenderer) {
+Texture::Texture(const char* imagePath, RenderWindow& contextRenderer) {
     //Load image at specified path
-    SDL_Surface* gSurface = IMG_Load( image_path );
+    SDL_Surface* gSurface = IMG_Load( imagePath );
     if (!gSurface) {
         std::cout << IMG_GetError();
     }
 
     //Create texture from surface pixels
-    sdl_texture = SDL_CreateTextureFromSurface( contextRenderer.get_sdl_renderer(), gSurface );
-    if (!sdl_texture) {
+    sdlTexture = SDL_CreateTextureFromSurface( contextRenderer.get_sdl_renderer(), gSurface );
+    if (!sdlTexture) {
         std::cout << IMG_GetError();
     }
 
@@ -22,6 +22,6 @@ Texture::Texture(const char* image_path, RenderWindow& contextRenderer) {
 
 Texture::~Texture() {
     //Free loaded image
-    SDL_DestroyTexture( sdl_texture );
-    sdl_texture = nullptr;
+    SDL_DestroyTexture( sdlTexture );
+    sdlTexture = nullptr;
 }
