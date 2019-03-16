@@ -18,7 +18,7 @@ TextureAtlas::TextureAtlas(const fs::path atlasPath, RenderWindow &contextRender
     std::cout << imageName << std::endl;
     fs::path imagePath{ atlasPath.parent_path() / imageName };
     std::cout << imagePath << std::endl;
-    texture.load(imagePath.c_str(), contextRenderer);
+    texture.load(imagePath, contextRenderer);
     auto jsonFrames = atlasJson["frames"];
     for (auto item : jsonFrames.items()) {
         std::string key = item.key();
@@ -29,9 +29,9 @@ TextureAtlas::TextureAtlas(const fs::path atlasPath, RenderWindow &contextRender
         int h = frame["h"];
         frames[key] = SDL_Rect{x, y, w, h};
     }
-/*
+
     for (auto el : frames) {
         std::cout << el.first << ", x:" << el.second.x << ", y:" << el.second.y << ", w:" << el.second.w << ", h:" << el.second.h << std:: endl;
     }
-*/
+
 }
