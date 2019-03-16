@@ -4,6 +4,7 @@
 
 #include "RenderWindow.h"
 #include "Texture.h"
+#include "TextureAtlas.h"
 
 const int SCREEN_WIDTH = 640;
 const int SCREEN_HEIGHT = 480;
@@ -11,6 +12,7 @@ const int SCREEN_HEIGHT = 480;
 void loop() {
     RenderWindow rwin{"RenderWindow", SCREEN_WIDTH, SCREEN_HEIGHT};
     Texture tex{"../image.png", rwin};
+    TextureAtlas atlas{"../res/atlas.json", rwin};
 
     //Main loop flag
     bool quit = false;
