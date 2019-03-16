@@ -3,7 +3,9 @@
 #include <iostream>
 #include <SDL_image.h>
 
-Texture::Texture(const char* imagePath, RenderWindow& contextRenderer) {
+namespace fs = boost::filesystem;
+
+Texture::Texture(const fs::path imagePath, RenderWindow& contextRenderer) {
     load(imagePath, contextRenderer);
 }
 
@@ -13,9 +15,9 @@ Texture::~Texture() {
     sdlTexture = nullptr;
 }
 
-void Texture::load(const char *imagePath, RenderWindow &contextRenderer) {
+void Texture::load(const fs::path imagePath, RenderWindow &contextRenderer) {
     //Load image at specified path
-    SDL_Surface* gSurface = IMG_Load( imagePath );
+    SDL_Surface* gSurface = IMG_Load( imagePath.c_str() );
     if (!gSurface) {
         std::cout << IMG_GetError();
     }
