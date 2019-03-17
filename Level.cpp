@@ -4,6 +4,8 @@
 
 #include "thirdparty/json.hpp"
 
+#include "Texture.h"
+
 namespace fs = boost::filesystem;
 
 Level::Level(const fs::path& levelPath, const RenderWindow& contextRenderer) {
@@ -36,26 +38,56 @@ Level::Level(const fs::path& levelPath, const RenderWindow& contextRenderer) {
     const auto& gridJson = levelJson["grid"];
 
     for (const auto& row : gridJson) {
-        std::vector<int> inner;
+        std::vector<const SDL_Rect*> inner;
         for (int num : row) {
-            inner.push_back(num);
+            inner.push_back(tileEnum[num]);
         }
         grid.push_back(inner);
     }
-
+/*
     for (const auto& el : tileEnum) {
         std::cout << "tileEnum: ";
         std::cout << el.first << ", x:" << el.second->x << ", y:" << el.second->y << ", w:" << el.second->w << ", h:" << el.second->h << std::endl;
-    }
-
+    }*/
+/*
     std::cout << "grid:\n";
     for (const auto& inner : grid) {
-        for (int i : inner) {
+        for (const i : inner) {
             std::cout << i << ',';
         }
         std:: cout << std::endl;
+    }*/
+
+/*
+ * const auto& gridJson = levelJson["grid"];
+    unsigned xSize{0};
+    unsigned ySize{0};
+    for (const auto& row : gridJson) {
+        int currentRowSize = row.size();
+        xSize = currentRowSize > xSize ? currentRowSize : xSize;
+        ++ySize;
     }
+ *
+ */
 
 
+}
 
+void Level::draw_to(RenderWindow &targetRenderer) {
+    const int tileSize{35};
+    int x{0};
+    int y{0};
+
+    const Texture& tex = atlas.get_texture();
+    for (const auto& inner : grid) {
+        x = 0;
+        for (const SDL_Rect* srcRect : inner) {
+            if (srcRect) {
+                SDL_Rect dest{x, y, tileSize, tileSize};
+                tex.draw_to(targetRenderer, srcRect, &dest);
+            }
+            x += tileSize;
+        }
+        y += tileSize;
+    }
 }

@@ -9,9 +9,10 @@
 class Level {
 public:
     Level(const boost::filesystem::path& levelPath, const RenderWindow& contextRenderer);
+    void draw_to(RenderWindow& targetRenderer);
 private:
     TextureAtlas atlas;
-    std::vector<std::vector<int>> grid;
+    std::vector<std::vector<const SDL_Rect*>> grid;
 };
 
 

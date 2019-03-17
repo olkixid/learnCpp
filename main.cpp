@@ -37,12 +37,13 @@ void loop() {
 
 
         //Render texture to screen
-        tex.draw_to(rwin, nullptr, nullptr);
-        atlas.get_texture().draw_to(rwin, nullptr, nullptr);
+        //tex.draw_to(rwin, nullptr, nullptr);
+        //atlas.get_texture().draw_to(rwin, nullptr, nullptr);
 
         const SDL_Rect& bla = atlas.get_frames().at(std::string{"boxWarning.png"});
         SDL_Rect dest{0, 0, bla.w, bla.h};
-        atlas.get_texture().draw_to(rwin, &bla, &dest);
+        //atlas.get_texture().draw_to(rwin, &bla, &dest);
+        level.draw_to(rwin);
 
         //Update screen
         rwin.present();
