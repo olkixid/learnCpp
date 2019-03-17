@@ -11,7 +11,7 @@
 
 class TextureAtlas {
 public:
-    TextureAtlas(const boost::filesystem::path atlasPath, RenderWindow& contextRenderer);
+    TextureAtlas(const boost::filesystem::path& atlasPath, const RenderWindow& contextRenderer);
     const std::map<std::string, SDL_Rect>& get_frames() const { return frames; };
     const Texture& get_texture() const { return texture; };
 private:

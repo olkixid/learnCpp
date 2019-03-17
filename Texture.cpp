@@ -5,7 +5,7 @@
 
 namespace fs = boost::filesystem;
 
-Texture::Texture(const fs::path imagePath, RenderWindow& contextRenderer) {
+Texture::Texture(const fs::path& imagePath, const RenderWindow& contextRenderer) {
     load(imagePath, contextRenderer);
 }
 
@@ -15,7 +15,7 @@ Texture::~Texture() {
     sdlTexture = nullptr;
 }
 
-void Texture::load(const fs::path imagePath, RenderWindow &contextRenderer) {
+void Texture::load(const fs::path& imagePath, const RenderWindow& contextRenderer) {
     //Load image at specified path
     SDL_Surface* gSurface = IMG_Load( imagePath.c_str() );
     if (!gSurface) {

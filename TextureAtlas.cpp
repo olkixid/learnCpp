@@ -8,7 +8,7 @@
 
 namespace fs = boost::filesystem;
 
-TextureAtlas::TextureAtlas(const fs::path atlasPath, RenderWindow &contextRenderer) {
+TextureAtlas::TextureAtlas(const fs::path& atlasPath, const RenderWindow& contextRenderer) {
     using json = nlohmann::json;
 
     std::ifstream jsonStream{atlasPath.string()};
@@ -20,8 +20,8 @@ TextureAtlas::TextureAtlas(const fs::path atlasPath, RenderWindow &contextRender
     std::cout << imagePath << std::endl;
     texture.load(imagePath, contextRenderer);
     auto jsonFrames = atlasJson["frames"];
-    for (auto item : jsonFrames.items()) {
-        std::string key = item.key();
+    for (const auto& item : jsonFrames.items()) {
+        const std::string& key = item.key();
         json frame = item.value()["frame"];
         int x = frame["x"];
         int y = frame["y"];
@@ -30,7 +30,7 @@ TextureAtlas::TextureAtlas(const fs::path atlasPath, RenderWindow &contextRender
         frames[key] = SDL_Rect{x, y, w, h};
     }
 
-    for (auto el : frames) {
+    for (const auto& el : frames) {
         std::cout << el.first << ", x:" << el.second.x << ", y:" << el.second.y << ", w:" << el.second.w << ", h:" << el.second.h << std:: endl;
     }
 
