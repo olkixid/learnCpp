@@ -7,45 +7,29 @@
 #include "TextureAtlas.h"
 #include "Level.h"
 
-const int SCREEN_WIDTH = 640;
-const int SCREEN_HEIGHT = 480;
 
 void loop() {
-    RenderWindow rwin{"RenderWindow", SCREEN_WIDTH, SCREEN_HEIGHT};
-    Texture tex{"../image.png", rwin};
-    TextureAtlas atlas{"../res/atlas.json", rwin};
-    Level level{"../res/level1.json", rwin};
+    const int tileSize = 70;
 
-    //Main loop flag
-    bool quit = false;
+    const int screenWidth{ 16*tileSize };
+    const int screenHeight{ 10*tileSize };
 
-    //Event handler
-    SDL_Event e;
+    RenderWindow rwin{"RenderWindow", screenWidth, screenHeight};
+    Level level{"../res/level1.json", tileSize, rwin};
 
-    //While application is running
-    while( !quit ) {
-        //Handle events on queue
+
+    for(bool quit{false}; !quit;) {
+        SDL_Event e;
         while (SDL_PollEvent(&e) != 0) {
-            //User requests quit
             if (e.type == SDL_QUIT) {
                 quit = true;
             }
         }
 
-        //Clear screen
         rwin.clear();
 
-
-        //Render texture to screen
-        //tex.draw_to(rwin, nullptr, nullptr);
-        //atlas.get_texture().draw_to(rwin, nullptr, nullptr);
-
-        const SDL_Rect& bla = atlas.get_frames().at(std::string{"boxWarning.png"});
-        SDL_Rect dest{0, 0, bla.w, bla.h};
-        //atlas.get_texture().draw_to(rwin, &bla, &dest);
         level.draw_to(rwin);
 
-        //Update screen
         rwin.present();
     }
 }
@@ -56,7 +40,6 @@ int main() {
 
     loop();
 
-    //Quit SDL subsystems
     IMG_Quit();
     SDL_Quit();
     return 0;

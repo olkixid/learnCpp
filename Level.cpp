@@ -8,7 +8,7 @@
 
 namespace fs = boost::filesystem;
 
-Level::Level(const fs::path& levelPath, const RenderWindow& contextRenderer) {
+Level::Level(const fs::path& levelPath, int tileSize, const RenderWindow& contextRenderer)  : tileSize{tileSize} {
     using json = nlohmann::json;
 
     std::ifstream jsonStream{levelPath.string()};
@@ -64,7 +64,6 @@ Level::Level(const fs::path& levelPath, const RenderWindow& contextRenderer) {
 }
 
 void Level::draw_to(RenderWindow &targetRenderer) {
-    const int tileSize{35};
     int x{0};
     int y{0};
 
