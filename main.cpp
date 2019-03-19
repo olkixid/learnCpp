@@ -1,4 +1,7 @@
 #include <iostream>
+#include <chrono>
+#include <thread>
+
 #include <SDL.h>
 #include <SDL_image.h>
 
@@ -6,6 +9,7 @@
 #include "Level.h"
 #include "Player.h"
 
+/*
 
 static unsigned long tikks = 0;
 
@@ -16,8 +20,14 @@ Uint32 my_callbackfunc(Uint32 interval, void *param)
     SDL_AddTimer(10000, my_callbackfunc, nullptr);
 }
 
+*/
+
 
 void loop() {
+    using namespace std::literals::chrono_literals;
+    using clock = std::chrono::high_resolution_clock;
+    constexpr auto period = clock::time_point::duration{1s}/60;
+
     const int tileSize = 70;
 
     const int screenWidth{ 16*tileSize };
@@ -27,11 +37,21 @@ void loop() {
     Level level{"../res/level1.json", tileSize, rwin};
     Player player{level.get_texture_atlas()};
 
-    const Uint8 *state = SDL_GetKeyboardState(NULL);
+    const Uint8 *state = SDL_GetKeyboardState(nullptr);
 
-    SDL_AddTimer(10000, my_callbackfunc, nullptr);
+    auto nextDrawAfter = clock::now();
+
+    //SDL_AddTimer(10000, my_callbackfunc, nullptr);
 
     for(bool quit{false}; !quit;) {
+        auto now = clock::now();
+        if (nextDrawAfter > now) {
+            std::this_thread::sleep_for(nextDrawAfter - now);
+            nextDrawAfter += period;
+        } else {
+            nextDrawAfter = now + period;
+        }
+
         SDL_Event e;
         while (SDL_PollEvent(&e) != 0) {
             switch (e.type) {
@@ -58,18 +78,14 @@ void loop() {
         player.draw_to(rwin);
 
         rwin.present();
-        tikks++;
+
+        //tikks++;
     }
 }
 
 int main() {
-    SDL_Init( SDL_INIT_VIDEO | SDL_INIT_JOYSTICK | SDL_INIT_TIMER );
-    IMG_Init( IMG_INIT_PNG );
-    bool vs = SDL_SetHint(SDL_HINT_RENDER_VSYNC, "1");
-    if (vs) {
-        std:: cout << "enabled\n";
-    }
-
+    SDL_Init(SDL_INIT_VIDEO /* | SDL_INIT_TIMER */);
+    IMG_Init(IMG_INIT_PNG);
 
     loop();
 
