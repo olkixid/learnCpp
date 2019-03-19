@@ -3,9 +3,18 @@
 #include <SDL_image.h>
 
 #include "RenderWindow.h"
-#include "Texture.h"
-#include "TextureAtlas.h"
 #include "Level.h"
+#include "Player.h"
+
+
+static unsigned long tikks = 0;
+
+Uint32 my_callbackfunc(Uint32 interval, void *param)
+{
+    std::cout << tikks << std::endl;
+    tikks = 0;
+    SDL_AddTimer(10000, my_callbackfunc, nullptr);
+}
 
 
 void loop() {
@@ -16,27 +25,51 @@ void loop() {
 
     RenderWindow rwin{"RenderWindow", screenWidth, screenHeight};
     Level level{"../res/level1.json", tileSize, rwin};
+    Player player{level.get_texture_atlas()};
 
+    const Uint8 *state = SDL_GetKeyboardState(NULL);
+
+    SDL_AddTimer(10000, my_callbackfunc, nullptr);
 
     for(bool quit{false}; !quit;) {
         SDL_Event e;
         while (SDL_PollEvent(&e) != 0) {
+            switch (e.type) {
+                case SDL_QUIT:
+                    quit = true;
+                    break;
+            }
             if (e.type == SDL_QUIT) {
                 quit = true;
             }
         }
 
+
+        if (state[SDL_SCANCODE_LEFT]) {
+            player.runLeft();
+        }
+        if (state[SDL_SCANCODE_RIGHT]) {
+            player.runRight();
+        }
+
         rwin.clear();
 
         level.draw_to(rwin);
+        player.draw_to(rwin);
 
         rwin.present();
+        tikks++;
     }
 }
 
 int main() {
-    SDL_Init( SDL_INIT_VIDEO );
+    SDL_Init( SDL_INIT_VIDEO | SDL_INIT_JOYSTICK | SDL_INIT_TIMER );
     IMG_Init( IMG_INIT_PNG );
+    bool vs = SDL_SetHint(SDL_HINT_RENDER_VSYNC, "1");
+    if (vs) {
+        std:: cout << "enabled\n";
+    }
+
 
     loop();
 

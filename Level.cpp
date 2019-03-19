@@ -63,7 +63,7 @@ Level::Level(const fs::path& levelPath, int tileSize, const RenderWindow& contex
 
 }
 
-void Level::draw_to(RenderWindow &targetRenderer) {
+void Level::draw_to(RenderWindow& targetRenderer) {
     int x{0};
     int y{0};
 

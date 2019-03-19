@@ -12,6 +12,7 @@ class Level {
 public:
     Level(const boost::filesystem::path& levelPath, int tileSize, const RenderWindow& contextRenderer);
     void draw_to(RenderWindow& targetRenderer);
+    const TextureAtlas& get_texture_atlas() { return atlas; }
 private:
     TextureAtlas atlas;
     //std::vector<std::vector<const SDL_Rect*>> grid;
