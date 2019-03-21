@@ -12,8 +12,10 @@ class Player {
 public:
     Player(const TextureAtlas& atlas);
     void draw_to(RenderWindow& targetRenderer);
-    void runLeft();
-    void runRight();
+    void run_left();
+    void run_right();
+    void run_up();
+    void run_down();
     void jump();
 private:
     const Texture& texture;

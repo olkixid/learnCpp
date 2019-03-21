@@ -21,12 +21,20 @@ void Player::draw_to(RenderWindow &targetRenderer) {
 }
 
 
-void Player::runLeft() {
+void Player::run_left() {
     xPos-=5;
 }
 
-void Player::runRight() {
+void Player::run_right() {
     xPos+=5;
+}
+
+void Player::run_up() {
+    yPos-=5;
+}
+
+void Player::run_down() {
+    yPos+=5;
 }
 
 void Player::jump() {

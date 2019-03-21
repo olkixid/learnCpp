@@ -66,10 +66,16 @@ void loop() {
 
 
         if (state[SDL_SCANCODE_LEFT]) {
-            player.runLeft();
+            player.run_left();
         }
         if (state[SDL_SCANCODE_RIGHT]) {
-            player.runRight();
+            player.run_right();
+        }
+        if (state[SDL_SCANCODE_UP]) {
+            player.run_up();
+        }
+        if (state[SDL_SCANCODE_DOWN]) {
+            player.run_down();
         }
 
         rwin.clear();
