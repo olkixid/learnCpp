@@ -7,6 +7,7 @@
 #include "RenderWindow.h"
 #include "Texture.h"
 #include "TextureAtlas.h"
+#include "Rectangle.h"
 
 class Player {
 public:
@@ -22,8 +23,7 @@ private:
     //std::vector<const SDL_Rect&> animationFrames;
     const SDL_Rect& standingFrame;
 
-    double xPos{150.0};
-    double yPos{150.0};
+    Rectangle rect{150.0, 150.0, 0, 0};
 };
 
 

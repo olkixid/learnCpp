@@ -8,7 +8,7 @@ class RenderWindow {
 public:
     RenderWindow(const std::string& title, int width, int height);
     ~RenderWindow();
-    void clear() { SDL_RenderClear( sdlRenderer ); }
+    void clear() { SDL_SetRenderDrawColor(sdlRenderer, 0, 0, 0, 255); SDL_RenderClear(sdlRenderer); }
     void present() { SDL_RenderPresent( sdlRenderer ); }
     SDL_Renderer* get_sdl_renderer() const { return sdlRenderer; }
 private:

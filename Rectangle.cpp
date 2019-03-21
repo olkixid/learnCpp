@@ -11,5 +11,6 @@ bool Rectangle::intersects(Rectangle& r2) {
 
 void Rectangle::draw_to(RenderWindow& targetRenderer) {
     SDL_Rect sdlRect{static_cast<int>(x), static_cast<int>(y), static_cast<int>(w), static_cast<int>(h) };
+    SDL_SetRenderDrawColor(targetRenderer.get_sdl_renderer(), 255, 0, 0, 255);
     SDL_RenderDrawRect(targetRenderer.get_sdl_renderer(), &sdlRect);
 }
