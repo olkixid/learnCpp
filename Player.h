@@ -18,6 +18,7 @@ public:
     void run_up();
     void run_down();
     void jump();
+    const Rectangle& get_rectangle() { return rect; }
 private:
     const Texture& texture;
     //std::vector<const SDL_Rect&> animationFrames;

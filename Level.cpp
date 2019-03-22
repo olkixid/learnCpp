@@ -1,6 +1,8 @@
 #include "Level.h"
 
 #include <iostream>
+#include <algorithm>
+#include <cmath>
 
 #include "thirdparty/json.hpp"
 
@@ -80,3 +82,29 @@ void Level::draw_to(RenderWindow& targetRenderer) {
         x += tileSize;
     }
 }
+
+bool Level::check_collision(const Rectangle& rect, RenderWindow& targetRenderer) {
+    int firstX = static_cast<int>(floor(rect.x/tileSize));
+    int lastX = static_cast<int>(floor((rect.x+rect.w)/tileSize));
+    int firstY = static_cast<int>(floor(rect.y/tileSize));
+    int lastY = static_cast<int>(floor((rect.y+rect.h)/tileSize));
+
+    firstX = std::max<int>(firstX, 0);
+    lastX = std::min<int>(lastX, static_cast<int>(grid.shape()[0])-1);
+    firstY = std::max<int>(firstY, 0);
+    lastY = std::min<int>(lastY, static_cast<int>(grid.shape()[1])-1);
+
+    bool didCollide{false};
+    for (int x{firstX}; x<=lastX; x++) {
+        for (int y{firstY}; y<=lastY; y++) {
+            if (grid[x][y]) {
+                Rectangle drawRect{static_cast<double>(x*tileSize), static_cast<double>(y*tileSize), static_cast<double>(tileSize), static_cast<double>(tileSize) };
+                drawRect.draw_to(targetRenderer);
+                didCollide = true;
+            }
+        }
+    }
+    return didCollide;
+}
+
+

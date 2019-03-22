@@ -81,6 +81,7 @@ void loop() {
         rwin.clear();
 
         level.draw_to(rwin);
+        level.check_collision(player.get_rectangle(), rwin);
         player.draw_to(rwin);
 
         rwin.present();
