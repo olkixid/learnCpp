@@ -83,7 +83,8 @@ void Level::draw_to(RenderWindow& targetRenderer) {
     }
 }
 
-bool Level::check_collision(const Rectangle& rect, RenderWindow& targetRenderer) {
+bool Level::check_collision(Player& player, RenderWindow& targetRenderer) {
+    const Rectangle& rect = player.get_rectangle();
     int firstX = static_cast<int>(floor(rect.x/tileSize));
     int lastX = static_cast<int>(floor((rect.x+rect.w)/tileSize));
     int firstY = static_cast<int>(floor(rect.y/tileSize));
@@ -98,9 +99,13 @@ bool Level::check_collision(const Rectangle& rect, RenderWindow& targetRenderer)
     for (int x{firstX}; x<=lastX; x++) {
         for (int y{firstY}; y<=lastY; y++) {
             if (grid[x][y]) {
-                Rectangle drawRect{static_cast<double>(x*tileSize), static_cast<double>(y*tileSize), static_cast<double>(tileSize), static_cast<double>(tileSize) };
-                drawRect.draw_to(targetRenderer);
-                didCollide = true;
+                Rectangle tileRect{static_cast<double>(x * tileSize), static_cast<double>(y * tileSize),
+                                   static_cast<double>(tileSize), static_cast<double>(tileSize)};
+                if (rect.intersects(tileRect)) {
+                    tileRect.draw_to(targetRenderer);
+                    didCollide = true;
+                    player.react_to_overlapping(tileRect);
+                }
             }
         }
     }

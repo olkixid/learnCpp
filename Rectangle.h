@@ -5,8 +5,8 @@
 
 class Rectangle {
 public:
-    bool intersects(Rectangle& r2);
-    void draw_to(RenderWindow& targetRenderer);
+    bool intersects(Rectangle& r2) const;
+    void draw_to(RenderWindow& targetRenderer) const;
 
     double x;
     double y;

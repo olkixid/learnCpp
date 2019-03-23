@@ -25,21 +25,68 @@ void Player::draw_to(RenderWindow &targetRenderer) {
 
 
 void Player::run_left() {
-    rect.x-=5;
+    xSpeed = -5;
 }
 
 void Player::run_right() {
-    rect.x+=5;
+    xSpeed = 5;
 }
 
 void Player::run_up() {
-    rect.y-=5;
+    ySpeed = -5;
 }
 
 void Player::run_down() {
-    rect.y+=5;
+    ySpeed = 5;
 }
 
 void Player::jump() {
 
+}
+
+void Player::react_to_overlapping(const Rectangle& otherRect) {
+    switch (currentMoveDirection) {
+        case Direction::up:
+            rect.y = otherRect.y + otherRect.h;
+            break;
+        case Direction::right:
+            rect.x = otherRect.x - rect.w;
+            break;
+        case Direction::down:
+            rect.y = otherRect.y - rect.h;
+            break;
+        case Direction::left:
+            rect.x = otherRect.x + otherRect.w;
+            break;
+        default:
+            break;
+    }
+}
+
+void Player::move_x() {
+    rect.x += xSpeed;
+    if (xSpeed > 0) {
+        currentMoveDirection = Direction::right;
+    }
+    else if (xSpeed < 0) {
+        currentMoveDirection = Direction::left;
+    }
+    else {
+        currentMoveDirection = Direction::none;
+    }
+    xSpeed = 0;
+}
+
+void Player::move_y() {
+    rect.y += ySpeed;
+    if (ySpeed > 0) {
+        currentMoveDirection = Direction::down;
+    }
+    else if (ySpeed < 0) {
+        currentMoveDirection = Direction::up;
+    }
+    else {
+        currentMoveDirection = Direction::none;
+    }
+    ySpeed = 0;
 }

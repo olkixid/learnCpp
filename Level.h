@@ -7,7 +7,7 @@
 
 #include <SDL.h>
 #include "TextureAtlas.h"
-#include "Rectangle.h"
+#include "Player.h"
 
 class Level {
 public:
@@ -15,7 +15,7 @@ public:
     void draw_to(RenderWindow& targetRenderer);
     const TextureAtlas& get_texture_atlas() { return atlas; }
 
-    bool check_collision(const Rectangle& rect, RenderWindow& targetRenderer);
+    bool check_collision(Player& player, RenderWindow& targetRenderer);
 private:
     TextureAtlas atlas;
     //std::vector<std::vector<const SDL_Rect*>> grid;
