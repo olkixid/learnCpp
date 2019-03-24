@@ -6,8 +6,7 @@
 #include <SDL_image.h>
 
 #include "RenderWindow.h"
-#include "Level.h"
-#include "Player.h"
+#include "Scene.h"
 
 /*
 
@@ -34,8 +33,7 @@ void loop() {
     const int screenHeight{ 10*tileSize };
 
     RenderWindow rwin{"RenderWindow", screenWidth, screenHeight};
-    Level level{"../res/level1.json", tileSize, rwin};
-    Player player{level.get_texture_atlas()};
+    Scene scene{rwin, tileSize};
 
     const Uint8 *state = SDL_GetKeyboardState(nullptr);
 
@@ -58,34 +56,29 @@ void loop() {
                 case SDL_QUIT:
                     quit = true;
                     break;
-            }
-            if (e.type == SDL_QUIT) {
-                quit = true;
+                default:
+                    break;
             }
         }
 
 
         if (state[SDL_SCANCODE_LEFT]) {
-            player.run_left();
+            scene.get_player().run_left();
         }
         if (state[SDL_SCANCODE_RIGHT]) {
-            player.run_right();
+            scene.get_player().run_right();
         }
         if (state[SDL_SCANCODE_UP]) {
-            player.run_up();
+            scene.get_player().run_up();
         }
         if (state[SDL_SCANCODE_DOWN]) {
-            player.run_down();
+            scene.get_player().run_down();
         }
 
         rwin.clear();
 
-        level.draw_to(rwin);
-        player.move_x();
-        level.check_collision(player, rwin);
-        player.move_y();
-        level.check_collision(player, rwin);
-        player.draw_to(rwin);
+        scene.tick();
+        scene.draw_to(rwin);
 
         rwin.present();
 
