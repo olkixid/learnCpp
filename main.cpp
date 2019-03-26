@@ -7,6 +7,7 @@
 
 #include "RenderWindow.h"
 #include "Scene.h"
+#include "InputHandler.h"
 
 /*
 
@@ -35,7 +36,16 @@ void loop() {
     RenderWindow rwin{"RenderWindow", screenWidth, screenHeight};
     Scene scene{rwin, tileSize};
 
-    const Uint8 *state = SDL_GetKeyboardState(nullptr);
+
+    InputHandler inputHandler;
+    inputHandler.register_action_callback(SDLK_SPACE, std::bind(&Player::jump, &scene.get_player()), &scene.get_player());
+    inputHandler.register_action_callback(SDLK_k, [&inputHandler, &scene]() { inputHandler.unregister_callback(&scene.get_player()); }, nullptr);
+
+    inputHandler.register_state_callback(SDLK_LEFT, std::bind(&Player::run_left, &scene.get_player()), &scene.get_player());
+    inputHandler.register_state_callback(SDLK_RIGHT, std::bind(&Player::run_right, &scene.get_player()), &scene.get_player());
+    inputHandler.register_state_callback(SDLK_UP, std::bind(&Player::run_up, &scene.get_player()), &scene.get_player());
+    inputHandler.register_state_callback(SDLK_DOWN, std::bind(&Player::run_down, &scene.get_player()), &scene.get_player());
+
 
     auto nextDrawAfter = clock::now();
 
@@ -50,30 +60,7 @@ void loop() {
             nextDrawAfter = now + period;
         }
 
-        SDL_Event e;
-        while (SDL_PollEvent(&e) != 0) {
-            switch (e.type) {
-                case SDL_QUIT:
-                    quit = true;
-                    break;
-                default:
-                    break;
-            }
-        }
-
-
-        if (state[SDL_SCANCODE_LEFT]) {
-            scene.get_player().run_left();
-        }
-        if (state[SDL_SCANCODE_RIGHT]) {
-            scene.get_player().run_right();
-        }
-        if (state[SDL_SCANCODE_UP]) {
-            scene.get_player().run_up();
-        }
-        if (state[SDL_SCANCODE_DOWN]) {
-            scene.get_player().run_down();
-        }
+        quit = inputHandler.handle();
 
         rwin.clear();
 

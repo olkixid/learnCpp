@@ -41,7 +41,7 @@ void Player::run_down() {
 }
 
 void Player::jump() {
-
+    ySpeed = -20;
 }
 
 void Player::react_to_overlapping(const Rectangle& otherRect) {
