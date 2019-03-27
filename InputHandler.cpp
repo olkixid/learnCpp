@@ -59,6 +59,7 @@ bool InputHandler::handle() {
 }
 
 void InputHandler::hit(SDL_Keycode keycode) {
+    //what if someone adds callbacks in a callback???
     const auto& range = action_callbacks.equal_range(keycode);
     for (auto it = range.first; it != range.second; ++it)
     {
@@ -80,3 +81,16 @@ void InputHandler::handle_states() {
     }
 }
 
+InputHandler* InputHandler::instance = nullptr;
+
+InputHandler &InputHandler::get_instance() {
+    if (!instance) {
+        instance = new InputHandler;
+    }
+    return *instance;
+}
+
+
+void InputHandler::delete_instance() {
+    delete instance;
+}

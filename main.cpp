@@ -37,7 +37,7 @@ void loop() {
     Scene scene{rwin, tileSize};
 
 
-    InputHandler inputHandler;
+    InputHandler& inputHandler = InputHandler::get_instance();
     inputHandler.register_action_callback(SDLK_SPACE, std::bind(&Player::jump, &scene.get_player()), &scene.get_player());
     inputHandler.register_action_callback(SDLK_k, [&inputHandler, &scene]() { inputHandler.unregister_callback(&scene.get_player()); }, nullptr);
 
@@ -71,6 +71,7 @@ void loop() {
 
         //tikks++;
     }
+
 }
 
 int main() {
@@ -79,6 +80,7 @@ int main() {
 
     loop();
 
+    InputHandler::delete_instance();
     IMG_Quit();
     SDL_Quit();
     return 0;
