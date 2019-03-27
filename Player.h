@@ -19,7 +19,7 @@ enum class Direction {
 
 class Player {
 public:
-    Player(const TextureAtlas& atlas);
+    explicit Player(const TextureAtlas& atlas);
     void draw_to(RenderWindow& targetRenderer);
     void run_left();
     void run_right();
