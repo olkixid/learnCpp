@@ -1,5 +1,7 @@
 #include "Player.h"
 
+#include "InputHandler.h"
+
 Player::Player(const TextureAtlas& atlas) : texture{atlas.get_texture()},
                                             standingFrame{atlas.get_frames().at("p3_front.png")}
 {
@@ -15,7 +17,21 @@ Player::Player(const TextureAtlas& atlas) : texture{atlas.get_texture()},
     animationFrames.push_back(frames.at("p3_walk06.png");
     animationFrames.push_back(frames.at("p3_walk07.png");
      */
+
+    InputHandler& inputHandler = InputHandler::get_instance();
+    inputHandler.register_action_callback(SDLK_SPACE, std::bind(&Player::jump, this), this);
+    inputHandler.register_action_callback(SDLK_k, [&inputHandler, this]() { inputHandler.unregister_callback(this); }, nullptr);
+
+    inputHandler.register_state_callback(SDLK_LEFT, std::bind(&Player::run_left, this), this);
+    inputHandler.register_state_callback(SDLK_RIGHT, std::bind(&Player::run_right, this), this);
+    inputHandler.register_state_callback(SDLK_UP, std::bind(&Player::run_up, this), this);
+    inputHandler.register_state_callback(SDLK_DOWN, std::bind(&Player::run_down, this), this);
 };
+
+Player::~Player() {
+    InputHandler& inputHandler = InputHandler::get_instance();
+    inputHandler.unregister_callback(this);
+}
 
 void Player::draw_to(RenderWindow &targetRenderer) {
     SDL_Rect dest{static_cast<int>(rect.x), static_cast<int>(rect.y), standingFrame.w, standingFrame.h};
@@ -90,3 +106,4 @@ void Player::move_y() {
     }
     ySpeed = 0;
 }
+

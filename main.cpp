@@ -35,17 +35,7 @@ void loop() {
 
     RenderWindow rwin{"RenderWindow", screenWidth, screenHeight};
     Scene scene{rwin, tileSize};
-
-
     InputHandler& inputHandler = InputHandler::get_instance();
-    inputHandler.register_action_callback(SDLK_SPACE, std::bind(&Player::jump, &scene.get_player()), &scene.get_player());
-    inputHandler.register_action_callback(SDLK_k, [&inputHandler, &scene]() { inputHandler.unregister_callback(&scene.get_player()); }, nullptr);
-
-    inputHandler.register_state_callback(SDLK_LEFT, std::bind(&Player::run_left, &scene.get_player()), &scene.get_player());
-    inputHandler.register_state_callback(SDLK_RIGHT, std::bind(&Player::run_right, &scene.get_player()), &scene.get_player());
-    inputHandler.register_state_callback(SDLK_UP, std::bind(&Player::run_up, &scene.get_player()), &scene.get_player());
-    inputHandler.register_state_callback(SDLK_DOWN, std::bind(&Player::run_down, &scene.get_player()), &scene.get_player());
-
 
     auto nextDrawAfter = clock::now();
 
