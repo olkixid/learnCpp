@@ -8,6 +8,7 @@
 #include "Texture.h"
 #include "TextureAtlas.h"
 #include "Rectangle.h"
+#include "Scene.h"
 
 enum class Direction {
     none,
@@ -17,9 +18,11 @@ enum class Direction {
     left
 };
 
+class Scene;
+
 class Player {
 public:
-    explicit Player(const TextureAtlas& atlas);
+    Player(Scene& scene);
     ~Player();
     void draw_to(RenderWindow& targetRenderer);
     void run_left();

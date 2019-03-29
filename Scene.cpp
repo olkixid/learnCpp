@@ -1,19 +1,24 @@
 #include "Scene.h"
 
-Scene::Scene(RenderWindow& contextRenderer, int tileSize)
-    : level{"../res/level1.json", tileSize, contextRenderer},
-      player{level.get_texture_atlas()},
-      debugRenderWindow{contextRenderer}
+Scene::Scene(RenderWindow& debugRenderer) :
+      debugRenderWindow{debugRenderer}
 {}
 
 void Scene::draw_to(RenderWindow& targetRenderer) {
-    level.draw_to(targetRenderer);
-    player.draw_to(targetRenderer);
+    pLevel->draw_to(targetRenderer);
+    pPlayer->draw_to(targetRenderer);
 }
 
 void Scene::tick() {
-    player.move_x();
-    level.check_collision(player, debugRenderWindow);
-    player.move_y();
-    level.check_collision(player, debugRenderWindow);
+    pPlayer->move_x();
+    pLevel->check_collision(*pPlayer, debugRenderWindow);
+    pPlayer->move_y();
+    pLevel->check_collision(*pPlayer, debugRenderWindow);
+}
+
+TextureAtlas &Scene::get_atlas(const boost::filesystem::path& atlasPath) {
+    if (!atlases.count(atlasPath)) {
+        return atlases[atlasPath] = TextureAtlas{atlasPath, debugRenderWindow};
+    }
+    return atlases[atlasPath];
 }

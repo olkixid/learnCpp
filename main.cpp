@@ -8,6 +8,7 @@
 #include "RenderWindow.h"
 #include "Scene.h"
 #include "InputHandler.h"
+#include "Player.h"
 
 /*
 
@@ -34,7 +35,13 @@ void loop() {
     const int screenHeight{ 10*tileSize };
 
     RenderWindow rwin{"RenderWindow", screenWidth, screenHeight};
-    Scene scene{rwin, tileSize};
+    Scene scene{rwin};
+    Player player{scene};
+    scene.set_player(&player);
+    Level level{scene, "../res/level1.json", tileSize};
+    scene.set_level(&level);
+
+
     InputHandler& inputHandler = InputHandler::get_instance();
 
     auto nextDrawAfter = clock::now();

@@ -10,7 +10,7 @@
 
 namespace fs = boost::filesystem;
 
-Level::Level(const fs::path& levelPath, int tileSize, const RenderWindow& contextRenderer)  : tileSize{tileSize} {
+Level::Level(Scene& scene, const fs::path& levelPath, int tileSize) : tileSize{tileSize} {
     using json = nlohmann::json;
 
     std::ifstream jsonStream{levelPath.string()};
@@ -20,7 +20,8 @@ Level::Level(const fs::path& levelPath, int tileSize, const RenderWindow& contex
     std::cout << atlasName << std::endl;
     fs::path atlasPath{ levelPath.parent_path() / atlasName };
     std::cout << atlasPath << std::endl;
-    atlas.load(atlasPath, contextRenderer);
+    TextureAtlas& atlas = scene.get_atlas(atlasPath);
+    pTexture = &atlas.get_texture();
 
     std::map<int, const SDL_Rect*> tileEnum;
     const auto& tileEnumJson = levelJson["tileEnum"];
@@ -69,13 +70,12 @@ void Level::draw_to(RenderWindow& targetRenderer) {
     int x{0};
     int y{0};
 
-    const Texture& tex = atlas.get_texture();
     for (const auto& inner : grid) {
         y = 0;
         for (const SDL_Rect* srcRect : inner) {
             if (srcRect) {
                 SDL_Rect dest{x, y, tileSize, tileSize};
-                tex.draw_to(targetRenderer, srcRect, &dest);
+                pTexture->draw_to(targetRenderer, srcRect, &dest);
             }
             y += tileSize;
         }

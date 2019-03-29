@@ -8,16 +8,19 @@
 #include <SDL.h>
 #include "TextureAtlas.h"
 #include "Player.h"
+#include "Scene.h"
+
+class Scene;
+class Player;
 
 class Level {
 public:
-    Level(const boost::filesystem::path& levelPath, int tileSize, const RenderWindow& contextRenderer);
+    Level(Scene& scene, const boost::filesystem::path& levelPath, int tileSize);
     void draw_to(RenderWindow& targetRenderer);
-    const TextureAtlas& get_texture_atlas() { return atlas; }
 
     bool check_collision(Player& player, RenderWindow& targetRenderer);
 private:
-    TextureAtlas atlas;
+    const Texture* pTexture;
     //std::vector<std::vector<const SDL_Rect*>> grid;
     boost::multi_array<const SDL_Rect*, 2> grid;
     int tileSize;
