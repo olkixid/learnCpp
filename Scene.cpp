@@ -6,14 +6,18 @@ Scene::Scene(RenderWindow& debugRenderer) :
 
 void Scene::draw_to(RenderWindow& targetRenderer) {
     pLevel->draw_to(targetRenderer);
-    pPlayer->draw_to(targetRenderer);
+    for (Player* pPlayer : players) {
+        pPlayer->draw_to(targetRenderer);
+    }
 }
 
 void Scene::tick() {
-    pPlayer->move_x();
-    pLevel->check_collision(*pPlayer, debugRenderWindow);
-    pPlayer->move_y();
-    pLevel->check_collision(*pPlayer, debugRenderWindow);
+    for (Player* pPlayer : players) {
+        pPlayer->move_x();
+        pLevel->check_collision(*pPlayer, debugRenderWindow);
+        pPlayer->move_y();
+        pLevel->check_collision(*pPlayer, debugRenderWindow);
+    }
 }
 
 TextureAtlas &Scene::get_atlas(const boost::filesystem::path& atlasPath) {

@@ -36,8 +36,10 @@ void loop() {
 
     RenderWindow rwin{"RenderWindow", screenWidth, screenHeight};
     Scene scene{rwin};
-    Player player{scene};
-    scene.set_player(&player);
+    Player player{scene, 150, 150};
+    scene.add_player(player);
+    Player player2{scene, 300, 150};
+    scene.add_player(player2);
     Level level{scene, "../res/level1.json", tileSize};
     scene.set_level(&level);
 

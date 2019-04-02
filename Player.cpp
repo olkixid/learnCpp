@@ -2,10 +2,12 @@
 
 #include "InputHandler.h"
 
-Player::Player(Scene& scene) : texture{scene.get_atlas("../res/atlas.json").get_texture()},
+Player::Player(Scene& scene, double x, double y) : texture{scene.get_atlas("../res/atlas.json").get_texture()},
                                             standingFrame{scene.get_atlas("../res/atlas.json").get_frames().at("p3_front.png")}
 {
     const auto& frames = scene.get_atlas("../res/atlas.json").get_frames();
+    rect.x = x;
+    rect.y = y;
     rect.w = standingFrame.w;
     rect.h = standingFrame.h;
     /*

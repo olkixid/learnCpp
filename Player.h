@@ -22,7 +22,7 @@ class Scene;
 
 class Player {
 public:
-    Player(Scene& scene);
+    Player(Scene& scene, double x=150, double y=150);
     ~Player();
     void draw_to(RenderWindow& targetRenderer);
     void run_left();
@@ -41,7 +41,7 @@ private:
     //std::vector<const SDL_Rect&> animationFrames;
     const SDL_Rect& standingFrame;
 
-    Rectangle rect{150.0, 150.0, 0, 0};
+    Rectangle rect{0.0, 0.0, 0, 0};
     double xSpeed{0};
     double ySpeed{0};
     Direction currentMoveDirection{Direction::none};
