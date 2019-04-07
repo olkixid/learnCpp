@@ -8,7 +8,7 @@
 #include "TextureAtlas.h"
 
 class Level;
-class Player;
+class Entity;
 class RenderWindow;
 
 class Scene {
@@ -17,12 +17,12 @@ public:
     void draw_to(RenderWindow& targetRenderer);
     void tick();
     //Player& get_player() { return *pPlayer; }
-    void add_player(Player& player) { players.push_back(&player); }
+    void add_entity(Entity& entity) { entities.push_back(&entity); }
     void set_level(Level* pLevel) { this->pLevel = pLevel; }
     TextureAtlas& get_atlas(const boost::filesystem::path& atlasPath);
 private:
     Level* pLevel = nullptr;
-    std::vector<Player*> players;
+    std::vector<Entity*> entities;
     // just for debug rects etc:
     RenderWindow& debugRenderWindow;
     std::map<boost::filesystem::path, TextureAtlas> atlases;

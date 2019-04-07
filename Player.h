@@ -18,8 +18,13 @@ public:
     void run_up();
     void run_down();
     void jump();
+    double get_xspeed() { return xSpeed; }
+    double get_yspeed() { return ySpeed; }
 private:
     Player(Scene& scene, double x, double y, TextureAtlas& atlas);
+    double xSpeed {0};
+    double ySpeed {0};
+    void did_move();
 };
 
 

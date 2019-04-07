@@ -24,8 +24,6 @@ public:
     Entity(const Texture& texture, const SDL_Rect& frame) : texture{texture}, frame{frame} {}
     void draw_to(RenderWindow& targetRenderer);
 
-    void move_x();
-    void move_y();
     const Rectangle& get_rectangle() { return rect; }
 
     void react_to_overlapping(const Rectangle& otherRect);
@@ -33,13 +31,14 @@ public:
     void move(Level& level);
 protected:
     Rectangle rect{0.0, 0.0, 0, 0};
-    double xSpeed{0};
-    double ySpeed{0};
     const SDL_Rect& frame;
-    virtual void hitRight() {};
-    virtual void hitLeft() {};
-    virtual void hitBottom() {};
-    virtual void hitTop() {};
+    virtual void hitRight() {}
+    virtual void hitLeft() {}
+    virtual void hitBottom() {}
+    virtual void hitTop() {}
+    virtual double get_xspeed() { return 0; }
+    virtual double get_yspeed() { return 0; }
+    virtual void did_move() {}
 private:
     const Texture& texture;
     Direction currentMoveDirection{Direction::none};

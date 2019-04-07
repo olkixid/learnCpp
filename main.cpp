@@ -9,6 +9,7 @@
 #include "Scene.h"
 #include "InputHandler.h"
 #include "Player.h"
+#include "Enemy.h"
 #include "Level.h"
 
 /*
@@ -38,9 +39,11 @@ void loop() {
     RenderWindow rwin{"RenderWindow", screenWidth, screenHeight};
     Scene scene{rwin};
     Player player{scene, 150, 150};
-    scene.add_player(player);
+    scene.add_entity(player);
     Player player2{scene, 300, 150};
-    scene.add_player(player2);
+    scene.add_entity(player2);
+    Enemy enemy(scene, 450, 150);
+    scene.add_entity(enemy);
     Level level{scene, "../res/level1.json", tileSize};
     scene.set_level(&level);
 

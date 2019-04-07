@@ -1,7 +1,7 @@
 #include "Scene.h"
 
 #include "TextureAtlas.h"
-#include "Player.h"
+#include "Entity.h"
 #include "Level.h"
 
 Scene::Scene(RenderWindow& debugRenderer) :
@@ -10,14 +10,14 @@ Scene::Scene(RenderWindow& debugRenderer) :
 
 void Scene::draw_to(RenderWindow& targetRenderer) {
     pLevel->draw_to(targetRenderer);
-    for (Player* pPlayer : players) {
-        pPlayer->draw_to(targetRenderer);
+    for (Entity* pEntity : entities) {
+        pEntity->draw_to(targetRenderer);
     }
 }
 
 void Scene::tick() {
-    for (Player* pPlayer : players) {
-        pPlayer->move(*pLevel);
+    for (Entity* pEntity : entities) {
+        pEntity->move(*pLevel);
     }
 }
 

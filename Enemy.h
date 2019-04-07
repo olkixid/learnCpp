@@ -12,8 +12,11 @@ public:
 
 private:
     Enemy(Scene& scene, double x, double y, TextureAtlas& atlas);
-    //void hitRight() override;
-    //void hitLeft() override;
+    void hitRight() override;
+    void hitLeft() override;
+    double get_xspeed() override { return xSpeed; }
+
+    double xSpeed {3};
 };
 
 

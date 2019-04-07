@@ -33,38 +33,37 @@ void Entity::react_to_overlapping(const Rectangle& otherRect) {
     }
 }
 
-void Entity::move_x() {
-    rect.x += xSpeed;
-    if (xSpeed > 0) {
+
+void Entity::move(Level& level) {
+    double xs = get_xspeed();
+    double ys = get_yspeed();
+
+
+    rect.x += xs;
+    if (xs > 0) {
         currentMoveDirection = Direction::right;
     }
-    else if (xSpeed < 0) {
+    else if (xs < 0) {
         currentMoveDirection = Direction::left;
     }
     else {
         currentMoveDirection = Direction::none;
     }
-    xSpeed = 0;
-}
+    level.check_collision(*this);
 
-void Entity::move_y() {
-    rect.y += ySpeed;
-    if (ySpeed > 0) {
+
+    rect.y += ys;
+    if (ys > 0) {
         currentMoveDirection = Direction::down;
     }
-    else if (ySpeed < 0) {
+    else if (ys < 0) {
         currentMoveDirection = Direction::up;
     }
     else {
         currentMoveDirection = Direction::none;
     }
-    ySpeed = 0;
-}
+    level.check_collision(*this);
 
-void Entity::move(Level& level) {
-    move_x();
-    level.check_collision(*this);
-    move_y();
-    level.check_collision(*this);
+    did_move();
 }
 
