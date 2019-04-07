@@ -7,6 +7,9 @@
 #include "thirdparty/json.hpp"
 
 #include "Texture.h"
+#include "TextureAtlas.h"
+#include "Entity.h"
+#include "Scene.h"
 
 namespace fs = boost::filesystem;
 
@@ -83,8 +86,8 @@ void Level::draw_to(RenderWindow& targetRenderer) {
     }
 }
 
-bool Level::check_collision(Player& player, RenderWindow& targetRenderer) {
-    const Rectangle& rect = player.get_rectangle();
+bool Level::check_collision(Entity& entity) {
+    const Rectangle& rect = entity.get_rectangle();
     int firstX = static_cast<int>(floor(rect.x/tileSize));
     int lastX = static_cast<int>(floor((rect.x+rect.w)/tileSize));
     int firstY = static_cast<int>(floor(rect.y/tileSize));
@@ -102,9 +105,8 @@ bool Level::check_collision(Player& player, RenderWindow& targetRenderer) {
                 Rectangle tileRect{static_cast<double>(x * tileSize), static_cast<double>(y * tileSize),
                                    static_cast<double>(tileSize), static_cast<double>(tileSize)};
                 if (rect.intersects(tileRect)) {
-                    tileRect.draw_to(targetRenderer);
                     didCollide = true;
-                    player.react_to_overlapping(tileRect);
+                    entity.react_to_overlapping(tileRect);
                 }
             }
         }

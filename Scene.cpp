@@ -1,5 +1,9 @@
 #include "Scene.h"
 
+#include "TextureAtlas.h"
+#include "Player.h"
+#include "Level.h"
+
 Scene::Scene(RenderWindow& debugRenderer) :
       debugRenderWindow{debugRenderer}
 {}
@@ -13,10 +17,7 @@ void Scene::draw_to(RenderWindow& targetRenderer) {
 
 void Scene::tick() {
     for (Player* pPlayer : players) {
-        pPlayer->move_x();
-        pLevel->check_collision(*pPlayer, debugRenderWindow);
-        pPlayer->move_y();
-        pLevel->check_collision(*pPlayer, debugRenderWindow);
+        pPlayer->move(*pLevel);
     }
 }
 

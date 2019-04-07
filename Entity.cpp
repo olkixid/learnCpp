@@ -1,6 +1,7 @@
 #include "Entity.h"
 
 #include "Texture.h"
+#include "Level.h"
 
 
 void Entity::draw_to(RenderWindow &targetRenderer) {
@@ -58,5 +59,12 @@ void Entity::move_y() {
         currentMoveDirection = Direction::none;
     }
     ySpeed = 0;
+}
+
+void Entity::move(Level& level) {
+    move_x();
+    level.check_collision(*this);
+    move_y();
+    level.check_collision(*this);
 }
 

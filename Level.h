@@ -6,19 +6,18 @@
 #include <boost/multi_array.hpp>
 
 #include <SDL.h>
-#include "TextureAtlas.h"
-#include "Player.h"
-#include "Scene.h"
 
 class Scene;
-class Player;
+class Entity;
+class RenderWindow;
+class Texture;
 
 class Level {
 public:
     Level(Scene& scene, const boost::filesystem::path& levelPath, int tileSize);
     void draw_to(RenderWindow& targetRenderer);
 
-    bool check_collision(Player& player, RenderWindow& targetRenderer);
+    bool check_collision(Entity& entity);
 private:
     const Texture* pTexture;
     //std::vector<std::vector<const SDL_Rect*>> grid;

@@ -5,12 +5,11 @@
 #include <vector>
 #include <boost/filesystem.hpp>
 
-#include "RenderWindow.h"
-#include "Level.h"
-#include "Player.h"
+#include "TextureAtlas.h"
 
 class Level;
 class Player;
+class RenderWindow;
 
 class Scene {
 public:

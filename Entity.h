@@ -8,6 +8,7 @@
 class Scene;
 class RenderWindow;
 class Texture;
+class Level;
 
 
 enum class Direction {
@@ -28,6 +29,8 @@ public:
     const Rectangle& get_rectangle() { return rect; }
 
     void react_to_overlapping(const Rectangle& otherRect);
+
+    void move(Level& level);
 protected:
     Rectangle rect{0.0, 0.0, 0, 0};
     double xSpeed{0};
