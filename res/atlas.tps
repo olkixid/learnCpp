@@ -181,62 +181,20 @@
         </struct>
         <key>individualSpriteSettings</key>
         <map type="IndividualSpriteSettingsMap">
-            <key type="filename">tiles/box.png</key>
-            <key type="filename">tiles/boxAlt.png</key>
-            <key type="filename">tiles/boxCoin.png</key>
-            <key type="filename">tiles/boxCoinAlt.png</key>
-            <key type="filename">tiles/boxCoinAlt_disabled.png</key>
-            <key type="filename">tiles/boxCoin_disabled.png</key>
-            <key type="filename">tiles/boxEmpty.png</key>
-            <key type="filename">tiles/boxExplosive.png</key>
-            <key type="filename">tiles/boxExplosiveAlt.png</key>
-            <key type="filename">tiles/boxExplosive_disabled.png</key>
-            <key type="filename">tiles/boxItem.png</key>
-            <key type="filename">tiles/boxItemAlt.png</key>
-            <key type="filename">tiles/boxItemAlt_disabled.png</key>
-            <key type="filename">tiles/boxItem_disabled.png</key>
-            <key type="filename">tiles/boxWarning.png</key>
-            <key type="filename">tiles/brickWall.png</key>
-            <key type="filename">tiles/castle.png</key>
-            <key type="filename">tiles/castleCenter.png</key>
-            <key type="filename">tiles/castleCenter_rounded.png</key>
-            <key type="filename">tiles/castleLeft.png</key>
-            <key type="filename">tiles/castleMid.png</key>
-            <key type="filename">tiles/castleRight.png</key>
-            <key type="filename">tiles/grass.png</key>
-            <key type="filename">tiles/grassCenter.png</key>
-            <key type="filename">tiles/grassCenter_rounded.png</key>
-            <key type="filename">tiles/grassLeft.png</key>
-            <key type="filename">tiles/grassMid.png</key>
-            <key type="filename">tiles/grassRight.png</key>
-            <key type="filename">tiles/lock_blue.png</key>
-            <key type="filename">tiles/lock_green.png</key>
-            <key type="filename">tiles/lock_red.png</key>
-            <key type="filename">tiles/lock_yellow.png</key>
-            <key type="filename">tiles/sand.png</key>
-            <key type="filename">tiles/sandCenter.png</key>
-            <key type="filename">tiles/sandCenter_rounded.png</key>
-            <key type="filename">tiles/sandLeft.png</key>
-            <key type="filename">tiles/sandMid.png</key>
-            <key type="filename">tiles/sandRight.png</key>
-            <key type="filename">tiles/sign.png</key>
-            <key type="filename">tiles/signExit.png</key>
-            <key type="filename">tiles/signLeft.png</key>
-            <key type="filename">tiles/signRight.png</key>
+            <key type="filename">../../../Downloads/platformer-art-complete-pack-0/Base pack/Enemies/blockerMad.png</key>
             <struct type="IndividualSpriteSettings">
                 <key>pivotPoint</key>
                 <point_f>0.5,0.5</point_f>
                 <key>scale9Enabled</key>
                 <false/>
                 <key>scale9Borders</key>
-                <rect>18,18,35,35</rect>
+                <rect>13,13,25,25</rect>
                 <key>scale9Paddings</key>
-                <rect>18,18,35,35</rect>
+                <rect>13,13,25,25</rect>
                 <key>scale9FromFile</key>
                 <false/>
             </struct>
-            <key type="filename">tiles/p3_front.png</key>
-            <key type="filename">tiles/p3_stand.png</key>
+            <key type="filename">../../../Downloads/platformer-art-complete-pack-0/Base pack/Player/p3_front.png</key>
             <struct type="IndividualSpriteSettings">
                 <key>pivotPoint</key>
                 <point_f>0.5,0.5</point_f>
@@ -249,46 +207,27 @@
                 <key>scale9FromFile</key>
                 <false/>
             </struct>
-            <key type="filename">tiles/p3_jump.png</key>
+            <key type="filename">../../../Downloads/platformer-art-complete-pack-0/Base pack/Tiles/box.png</key>
+            <key type="filename">../../../Downloads/platformer-art-complete-pack-0/Base pack/Tiles/castleCenter_rounded.png</key>
             <struct type="IndividualSpriteSettings">
                 <key>pivotPoint</key>
                 <point_f>0.5,0.5</point_f>
                 <key>scale9Enabled</key>
                 <false/>
                 <key>scale9Borders</key>
-                <rect>17,24,33,47</rect>
+                <rect>18,18,35,35</rect>
                 <key>scale9Paddings</key>
-                <rect>17,24,33,47</rect>
-                <key>scale9FromFile</key>
-                <false/>
-            </struct>
-            <key type="filename">tiles/p3_walk01.png</key>
-            <key type="filename">tiles/p3_walk02.png</key>
-            <key type="filename">tiles/p3_walk03.png</key>
-            <key type="filename">tiles/p3_walk04.png</key>
-            <key type="filename">tiles/p3_walk05.png</key>
-            <key type="filename">tiles/p3_walk06.png</key>
-            <key type="filename">tiles/p3_walk07.png</key>
-            <key type="filename">tiles/p3_walk08.png</key>
-            <key type="filename">tiles/p3_walk09.png</key>
-            <key type="filename">tiles/p3_walk10.png</key>
-            <key type="filename">tiles/p3_walk11.png</key>
-            <struct type="IndividualSpriteSettings">
-                <key>pivotPoint</key>
-                <point_f>0.5,0.5</point_f>
-                <key>scale9Enabled</key>
-                <false/>
-                <key>scale9Borders</key>
-                <rect>18,24,36,49</rect>
-                <key>scale9Paddings</key>
-                <rect>18,24,36,49</rect>
+                <rect>18,18,35,35</rect>
                 <key>scale9FromFile</key>
                 <false/>
             </struct>
         </map>
         <key>fileList</key>
         <array>
-            <filename>tiles</filename>
+            <filename>../../../Downloads/platformer-art-complete-pack-0/Base pack/Enemies/blockerMad.png</filename>
+            <filename>../../../Downloads/platformer-art-complete-pack-0/Base pack/Player/p3_front.png</filename>
+            <filename>../../../Downloads/platformer-art-complete-pack-0/Base pack/Tiles/box.png</filename>
+            <filename>../../../Downloads/platformer-art-complete-pack-0/Base pack/Tiles/castleCenter_rounded.png</filename>
         </array>
         <key>ignoreFileList</key>
         <array/>
