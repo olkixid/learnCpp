@@ -33,6 +33,10 @@ protected:
     double xSpeed{0};
     double ySpeed{0};
     const SDL_Rect& frame;
+    virtual void hitRight() {};
+    virtual void hitLeft() {};
+    virtual void hitBottom() {};
+    virtual void hitTop() {};
 private:
     const Texture& texture;
     Direction currentMoveDirection{Direction::none};

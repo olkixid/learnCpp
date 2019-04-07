@@ -13,15 +13,19 @@ void Entity::react_to_overlapping(const Rectangle& otherRect) {
     switch (currentMoveDirection) {
         case Direction::up:
             rect.y = otherRect.y + otherRect.h;
+            hitTop();
             break;
         case Direction::right:
             rect.x = otherRect.x - rect.w;
+            hitRight();
             break;
         case Direction::down:
             rect.y = otherRect.y - rect.h;
+            hitBottom();
             break;
         case Direction::left:
             rect.x = otherRect.x + otherRect.w;
+            hitLeft();
             break;
         default:
             break;

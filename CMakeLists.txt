@@ -14,7 +14,7 @@ include_directories(${SDL2_INCLUDE_DIRS})
 include_directories(${SDL2_IMAGE_INCLUDE_DIRS})
 include_directories(${Boost_INCLUDE_DIRS})
 
-add_executable(learnCpp main.cpp Texture.cpp Texture.h RenderWindow.cpp RenderWindow.h TextureAtlas.cpp TextureAtlas.h Level.cpp Level.h Player.cpp Player.h Rectangle.cpp Rectangle.h Scene.cpp Scene.h InputHandler.cpp InputHandler.h Entity.cpp Entity.h)
+add_executable(learnCpp main.cpp Texture.cpp Texture.h RenderWindow.cpp RenderWindow.h TextureAtlas.cpp TextureAtlas.h Level.cpp Level.h Player.cpp Player.h Rectangle.cpp Rectangle.h Scene.cpp Scene.h InputHandler.cpp InputHandler.h Entity.cpp Entity.h Enemy.cpp Enemy.h)
 target_link_libraries(learnCpp ${SDL2_LIBRARIES})
 target_link_libraries(learnCpp ${SDL2_IMAGE_LIBRARIES})
 target_link_libraries(learnCpp ${Boost_LIBRARIES})
