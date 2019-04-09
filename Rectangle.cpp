@@ -7,3 +7,9 @@ bool Rectangle::intersects(Rectangle& r2) const {
     }
     return true;
 }
+
+Rectangle::Rectangle(SDL_Rect *sdlRect)
+: x{static_cast<double>(sdlRect->x)},
+  y{static_cast<double>(sdlRect->y)},
+  w{static_cast<double>(sdlRect->h)},
+  h{static_cast<double>(sdlRect->h)} {}

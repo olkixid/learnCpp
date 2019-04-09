@@ -30,7 +30,7 @@ public:
 
     void move(Level& level);
 protected:
-    Rectangle rect{0.0, 0.0, 0, 0};
+    Rectangle rect;
     const SDL_Rect& frame;
     virtual void hitRight() {}
     virtual void hitLeft() {}

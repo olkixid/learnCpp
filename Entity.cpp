@@ -6,8 +6,7 @@
 
 
 void Entity::draw_to(RenderWindow &targetRenderer) {
-    SDL_Rect dest{static_cast<int>(rect.x), static_cast<int>(rect.y), frame.w, frame.h};
-    targetRenderer.draw(texture, &frame, &dest);
+    targetRenderer.draw(texture, &frame, rect);
     targetRenderer.draw(rect);
 }
 
