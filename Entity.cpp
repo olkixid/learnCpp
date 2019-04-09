@@ -12,7 +12,7 @@ void Entity::draw_to(RenderWindow &targetRenderer) {
 
 void Entity::react_to_overlapping(const Rectangle& otherRect) {
     switch (currentMoveDirection) {
-        case Direction::up:
+        case Direction::down:
             rect.y = otherRect.y + otherRect.h;
             hitTop();
             break;
@@ -20,7 +20,7 @@ void Entity::react_to_overlapping(const Rectangle& otherRect) {
             rect.x = otherRect.x - rect.w;
             hitRight();
             break;
-        case Direction::down:
+        case Direction::up:
             rect.y = otherRect.y - rect.h;
             hitBottom();
             break;
@@ -54,10 +54,10 @@ void Entity::move(Level& level) {
 
     rect.y += ys;
     if (ys > 0) {
-        currentMoveDirection = Direction::down;
+        currentMoveDirection = Direction::up;
     }
     else if (ys < 0) {
-        currentMoveDirection = Direction::up;
+        currentMoveDirection = Direction::down;
     }
     else {
         currentMoveDirection = Direction::none;

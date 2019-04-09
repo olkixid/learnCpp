@@ -41,15 +41,15 @@ void Player::run_right() {
 }
 
 void Player::run_up() {
-    ySpeed -= 5;
-}
-
-void Player::run_down() {
     ySpeed += 5;
 }
 
+void Player::run_down() {
+    ySpeed -= 5;
+}
+
 void Player::jump() {
-    ySpeed -= 20;
+    ySpeed += 20;
 }
 
 void Player::did_move() {
