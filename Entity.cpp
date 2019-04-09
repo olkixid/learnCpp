@@ -2,12 +2,13 @@
 
 #include "Texture.h"
 #include "Level.h"
+#include "RenderWindow.h"
 
 
 void Entity::draw_to(RenderWindow &targetRenderer) {
     SDL_Rect dest{static_cast<int>(rect.x), static_cast<int>(rect.y), frame.w, frame.h};
-    texture.draw_to(targetRenderer, &frame, &dest);
-    rect.draw_to(targetRenderer);
+    targetRenderer.draw(texture, &frame, &dest);
+    targetRenderer.draw(rect);
 }
 
 void Entity::react_to_overlapping(const Rectangle& otherRect) {

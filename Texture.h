@@ -3,10 +3,10 @@
 
 #include <SDL.h>
 
-#include "RenderWindow.h"
-
 #include <boost/filesystem.hpp>
 #include <utility>
+
+class RenderWindow;
 
 class Texture {
 public:
@@ -24,9 +24,10 @@ public:
     ~Texture();
 
     void load(const boost::filesystem::path& imagePath, const RenderWindow& contextRenderer);
-    void draw_to(RenderWindow& targetRenderer, const SDL_Rect* src, const SDL_Rect* dest) const { SDL_RenderCopy( targetRenderer.get_sdl_renderer(), sdlTexture, src, dest ); }
 private:
     SDL_Texture* sdlTexture = nullptr;
+
+    friend RenderWindow;
 };
 
 

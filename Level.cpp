@@ -78,7 +78,7 @@ void Level::draw_to(RenderWindow& targetRenderer) {
         for (const SDL_Rect* srcRect : inner) {
             if (srcRect) {
                 SDL_Rect dest{x, y, tileSize, tileSize};
-                pTexture->draw_to(targetRenderer, srcRect, &dest);
+                targetRenderer.draw(*pTexture, srcRect, &dest);
             }
             y += tileSize;
         }

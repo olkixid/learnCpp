@@ -3,6 +3,8 @@
 #include <iostream>
 #include <SDL_image.h>
 
+#include "RenderWindow.h"
+
 namespace fs = boost::filesystem;
 
 Texture::Texture(const fs::path& imagePath, const RenderWindow& contextRenderer) {
@@ -23,7 +25,7 @@ void Texture::load(const fs::path& imagePath, const RenderWindow& contextRendere
     }
 
     //Create texture from surface pixels
-    sdlTexture = SDL_CreateTextureFromSurface( contextRenderer.get_sdl_renderer(), gSurface );
+    sdlTexture = SDL_CreateTextureFromSurface( contextRenderer.sdlRenderer, gSurface );
     if (!sdlTexture) {
         std::cout << IMG_GetError();
     }
