@@ -38,11 +38,11 @@ void loop() {
 
     RenderWindow rwin{"RenderWindow", screenWidth, screenHeight};
     Scene scene{rwin};
-    Player player{scene, 150, 150};
+    Player player{scene, 150, 450};
     scene.add_entity(player);
-    Player player2{scene, 300, 150};
+    Player player2{scene, 300, 450};
     scene.add_entity(player2);
-    Enemy enemy(scene, 450, 150);
+    Enemy enemy(scene, 450, 450);
     scene.add_entity(enemy);
     Level level{scene, "../res/level1.json", tileSize};
     scene.set_level(&level);

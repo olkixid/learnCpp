@@ -56,13 +56,14 @@ Level::Level(Scene& scene, const fs::path& levelPath, int tileSize) : tileSize{t
 
 
     for (unsigned y{0}; y<gridJson.size(); ++y) {
+        unsigned flippedY{ySize-1-y};
         const auto& inner = gridJson[y];
         for (unsigned x{0}; x<inner.size(); ++x) {
             try{
                 int num = inner.at(x);
-                grid[x][y] = tileEnum.at(num);
+                grid[x][flippedY] = tileEnum.at(num);
             } catch (...) {
-                grid[x][y] = nullptr;
+                grid[x][flippedY] = nullptr;
             }
         }
     }
