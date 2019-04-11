@@ -11,8 +11,8 @@ Enemy::Enemy(Scene& scene, double x, double y, TextureAtlas& atlas) :
 {
     rect.set_x(x);
     rect.set_y(y);
-    rect.set_w(frame.w);
-    rect.set_h(frame.h);
+    rect.set_w(frame.w());
+    rect.set_h(frame.h());
 }
 
 void Enemy::hitLeft() {

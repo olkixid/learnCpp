@@ -6,7 +6,7 @@
 
 
 void Entity::draw_to(RenderWindow &targetRenderer) {
-    targetRenderer.draw(texture, &frame, rect);
+    targetRenderer.draw(texture, frame, rect);
     targetRenderer.draw(rect);
 }
 

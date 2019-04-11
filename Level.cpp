@@ -10,6 +10,7 @@
 #include "TextureAtlas.h"
 #include "Entity.h"
 #include "Scene.h"
+#include "RenderWindow.h"
 
 namespace fs = boost::filesystem;
 
@@ -26,14 +27,14 @@ Level::Level(Scene& scene, const fs::path& levelPath, int tileSize) : tileSize{t
     TextureAtlas& atlas = scene.get_atlas(atlasPath);
     pTexture = &atlas.get_texture();
 
-    std::map<int, const SDL_Rect*> tileEnum;
+    std::map<int, const Rectangle*> tileEnum;
     const auto& tileEnumJson = levelJson["tileEnum"];
     for (const auto& item : tileEnumJson.items()) {
         int num = item.value();
         const std::string& name = item.key();
 
         const auto& frames = atlas.get_frames();
-        const SDL_Rect* pRect = nullptr;
+        const Rectangle* pRect = nullptr;
         try {
             pRect = &frames.at(name);
         } catch (...) {}
@@ -76,10 +77,10 @@ void Level::draw_to(RenderWindow& targetRenderer) {
 
     for (const auto& inner : grid) {
         y = 0;
-        for (const SDL_Rect* srcRect : inner) {
+        for (const Rectangle* srcRect : inner) {
             if (srcRect) {
                 Rectangle dest(x, y, tileSize, tileSize);
-                targetRenderer.draw(*pTexture, srcRect, dest);
+                targetRenderer.draw(*pTexture, *srcRect, dest);
             }
             y += tileSize;
         }

@@ -12,8 +12,8 @@ Entity{atlas.get_texture(), atlas.get_frames().at("p3_front.png")}
 {
     rect.set_x(x);
     rect.set_y(y);
-    rect.set_w(frame.w);
-    rect.set_h(frame.h);
+    rect.set_w(frame.w());
+    rect.set_h(frame.h());
 
 
     InputHandler& inputHandler = InputHandler::get_instance();

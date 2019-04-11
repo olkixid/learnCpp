@@ -1,7 +1,6 @@
 #include "TextureAtlas.h"
 
 #include <fstream>
-#include <string>
 #include <iostream>
 
 #include "thirdparty/json.hpp"
@@ -27,15 +26,15 @@ void TextureAtlas::load(const boost::filesystem::path &atlasPath, const RenderWi
     for (const auto& item : jsonFrames.items()) {
         const std::string& key = item.key();
         json frame = item.value()["frame"];
-        int x = frame["x"];
-        int y = frame["y"];
-        int w = frame["w"];
-        int h = frame["h"];
-        frames[key] = SDL_Rect{x, y, w, h};
+        double x = frame["x"];
+        double y = frame["y"];
+        double w = frame["w"];
+        double h = frame["h"];
+        frames[key] = Rectangle{x, y, w, h};
     }
 
     for (const auto& el : frames) {
-        std::cout << el.first << ", x:" << el.second.x << ", y:" << el.second.y << ", w:" << el.second.w << ", h:" << el.second.h << std::endl;
+        std::cout << el.first << ", x:" << el.second.x() << ", y:" << el.second.y() << ", w:" << el.second.w() << ", h:" << el.second.h() << std::endl;
     }
 
 }

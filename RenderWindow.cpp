@@ -27,8 +27,9 @@ void RenderWindow::draw(const Rectangle &rect) {
     SDL_RenderDrawRect(sdlRenderer, &sdlRect);
 }
 
-void RenderWindow::draw(const Texture &texture, const SDL_Rect *src, Rectangle &dest) {
+void RenderWindow::draw(const Texture& texture, const Rectangle& src, const Rectangle &dest) {
+    SDL_Rect sdlSrc{ static_cast<int>(src.x()), static_cast<int>(src.y()), static_cast<int>(src.w()), static_cast<int>(src.h()) };
     double flippedY = height - dest.y() - dest.h();
     SDL_Rect sdlDest{ static_cast<int>(dest.x()), static_cast<int>(flippedY), static_cast<int>(dest.w()), static_cast<int>(dest.h()) };
-    SDL_RenderCopy( sdlRenderer, texture.sdlTexture, src, &sdlDest );
+    SDL_RenderCopy( sdlRenderer, texture.sdlTexture, &sdlSrc, &sdlDest );
 }

@@ -13,7 +13,7 @@ public:
     ~RenderWindow();
     void clear() { SDL_SetRenderDrawColor(sdlRenderer, 0, 0, 0, 255); SDL_RenderClear(sdlRenderer); }
     void present() { SDL_RenderPresent( sdlRenderer ); }
-    void draw(const Texture& texture, const SDL_Rect* src, Rectangle& dest);
+    void draw(const Texture& texture, const Rectangle& src, const Rectangle& dest);
 
     void draw(const Rectangle& rect);
 private:

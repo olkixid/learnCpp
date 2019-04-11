@@ -2,7 +2,6 @@
 #define LEARNCPP_ENTITY_H
 
 
-#include <SDL.h>
 #include "Rectangle.h"
 
 class Scene;
@@ -21,7 +20,7 @@ enum class Direction {
 
 class Entity {
 public:
-    Entity(const Texture& texture, const SDL_Rect& frame) : texture{texture}, frame{frame} {}
+    Entity(const Texture& texture, const Rectangle& frame) : texture{texture}, frame{frame} {}
     void draw_to(RenderWindow& targetRenderer);
 
     const Rectangle& get_rectangle() { return rect; }
@@ -31,7 +30,7 @@ public:
     void move(Level& level);
 protected:
     Rectangle rect;
-    const SDL_Rect& frame;
+    const Rectangle& frame;
     virtual void hitRight() {}
     virtual void hitLeft() {}
     virtual void hitBottom() {}
