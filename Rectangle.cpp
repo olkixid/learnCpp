@@ -9,8 +9,8 @@ bool Rectangle::intersects(const Rectangle& r2) const {
     return true;
 }
 
-Rectangle::Rectangle(SDL_Rect *sdlRect)
-: mx{static_cast<double>(sdlRect->x)},
-  my{static_cast<double>(sdlRect->y)},
-  mw{static_cast<double>(sdlRect->h)},
-  mh{static_cast<double>(sdlRect->h)} {}
+Rectangle::Rectangle(const SDL_Rect& sdlRect)
+: mx{static_cast<double>(sdlRect.x)},
+  my{static_cast<double>(sdlRect.y)},
+  mw{static_cast<double>(sdlRect.h)},
+  mh{static_cast<double>(sdlRect.h)} {}

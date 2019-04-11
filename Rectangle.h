@@ -8,7 +8,7 @@ class Rectangle {
 public:
     Rectangle(double x, double y, double w, double h) : mx{x}, my{y}, mw{w}, mh{h} {}
     Rectangle() = default;
-    explicit Rectangle(SDL_Rect* sdlRect);
+    explicit Rectangle(const SDL_Rect& sdlRect);
     bool intersects(const Rectangle& r2) const;
     double x() const { return mx; }
     double y() const { return my; }
