@@ -1,15 +1,16 @@
 #include "Rectangle.h"
 
+#include <SDL_rect.h>
 
-bool Rectangle::intersects(Rectangle& r2) const {
-    if(r2.x >= x + w || x >= r2.x + r2.w || r2.y >= y + h || y >= r2.y + r2.h) {
+bool Rectangle::intersects(const Rectangle& r2) const {
+    if(r2.mx >= mx + mw || mx >= r2.mx + r2.mw || r2.my >= my + mh || my >= r2.my + r2.mh) {
         return false;
     }
     return true;
 }
 
 Rectangle::Rectangle(SDL_Rect *sdlRect)
-: x{static_cast<double>(sdlRect->x)},
-  y{static_cast<double>(sdlRect->y)},
-  w{static_cast<double>(sdlRect->h)},
-  h{static_cast<double>(sdlRect->h)} {}
+: mx{static_cast<double>(sdlRect->x)},
+  my{static_cast<double>(sdlRect->y)},
+  mw{static_cast<double>(sdlRect->h)},
+  mh{static_cast<double>(sdlRect->h)} {}

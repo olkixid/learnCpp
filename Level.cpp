@@ -89,10 +89,10 @@ void Level::draw_to(RenderWindow& targetRenderer) {
 
 bool Level::check_collision(Entity& entity) {
     const Rectangle& rect = entity.get_rectangle();
-    int firstX = static_cast<int>(floor(rect.x/tileSize));
-    int lastX = static_cast<int>(floor((rect.x+rect.w)/tileSize));
-    int firstY = static_cast<int>(floor(rect.y/tileSize));
-    int lastY = static_cast<int>(floor((rect.y+rect.h)/tileSize));
+    int firstX = static_cast<int>(floor(rect.x()/tileSize));
+    int lastX = static_cast<int>(floor((rect.x()+rect.w())/tileSize));
+    int firstY = static_cast<int>(floor(rect.y()/tileSize));
+    int lastY = static_cast<int>(floor((rect.y()+rect.h())/tileSize));
 
     firstX = std::max<int>(firstX, 0);
     lastX = std::min<int>(lastX, static_cast<int>(grid.shape()[0])-1);

@@ -10,10 +10,10 @@ Player::Player(Scene& scene, double x, double y) : Player{scene, x, y, scene.get
 Player::Player(Scene& scene, double x, double y, TextureAtlas& atlas) :
 Entity{atlas.get_texture(), atlas.get_frames().at("p3_front.png")}
 {
-    rect.x = x;
-    rect.y = y;
-    rect.w = frame.w;
-    rect.h = frame.h;
+    rect.set_x(x);
+    rect.set_y(y);
+    rect.set_w(frame.w);
+    rect.set_h(frame.h);
 
 
     InputHandler& inputHandler = InputHandler::get_instance();

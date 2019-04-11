@@ -9,11 +9,10 @@ Enemy::Enemy(Scene& scene, double x, double y) : Enemy{scene, x, y, scene.get_at
 Enemy::Enemy(Scene& scene, double x, double y, TextureAtlas& atlas) :
         Entity{atlas.get_texture(), atlas.get_frames().at("blockerMad.png")}
 {
-    rect.x = x;
-    rect.y = y;
-    rect.w = frame.w;
-    rect.h = frame.h;
-
+    rect.set_x(x);
+    rect.set_y(y);
+    rect.set_w(frame.w);
+    rect.set_h(frame.h);
 }
 
 void Enemy::hitLeft() {

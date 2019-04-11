@@ -19,8 +19,8 @@ RenderWindow::~RenderWindow() {
 
 //perhaps round instead of casting??
 void RenderWindow::draw(const Rectangle &rect) {
-    double flippedY = height - rect.y - rect.h;
-    SDL_Rect sdlRect{static_cast<int>(rect.x), static_cast<int>(flippedY), static_cast<int>(rect.w), static_cast<int>(rect.h) };
+    double flippedY = height - rect.y() - rect.h();
+    SDL_Rect sdlRect{static_cast<int>(rect.x()), static_cast<int>(flippedY), static_cast<int>(rect.w()), static_cast<int>(rect.h()) };
 
 
     SDL_SetRenderDrawColor(sdlRenderer, 255, 0, 0, 255);
@@ -28,7 +28,7 @@ void RenderWindow::draw(const Rectangle &rect) {
 }
 
 void RenderWindow::draw(const Texture &texture, const SDL_Rect *src, Rectangle &dest) {
-    double flippedY = height - dest.y - dest.h;
-    SDL_Rect sdlDest{ static_cast<int>(dest.x), static_cast<int>(flippedY), static_cast<int>(dest.w), static_cast<int>(dest.h) };
+    double flippedY = height - dest.y() - dest.h();
+    SDL_Rect sdlDest{ static_cast<int>(dest.x()), static_cast<int>(flippedY), static_cast<int>(dest.w()), static_cast<int>(dest.h()) };
     SDL_RenderCopy( sdlRenderer, texture.sdlTexture, src, &sdlDest );
 }
