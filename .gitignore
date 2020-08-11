@@ -1,5 +1,5 @@
-.idea/
-cmake-build-debug/
+/.idea/
+/cmake-build-*/
 
 ### https://github.com/github/gitignore/blob/master/Global/macOS.gitignore
 
